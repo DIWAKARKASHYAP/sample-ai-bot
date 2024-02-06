@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            .diffBorder {
+                z-index: -1;
+                border-radius: 28% 72% 77% 23% / 25% 69% 31% 75%;
+            }
+        </style>
+    </head>
+    <body class="m-10">
+        <div
+            class="w-80 h-80 diffBorder absolute bg-blue-200 top-10 rotate-90 -left-6"
+        ></div>
+        <div
+            class="w-96 h-96 diffBorder absolute bg-blue-200 top-40 rotate-45 right-24"
+        ></div>
+        <div
+            class="w-40 h-40 diffBorder absolute bg-blue-200 bottom-10 rotate-12 left-52"
+        ></div>
+
+        <div class="max-w-5xl m-auto flex flex-col mt-28">
+            <div class="flex flex-col"></div>
+            <h1
+                class="mb-4 m-auto text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl"
+            >
+                Your Welcome,
+                <span id="companyNameDisplay"></span>
+            </h1>
+            <p
+                class="mb-6 text-lg font-normal text-gray-600 lg:text-xl sm:px-16 xl:px-48"
+            >
+                You can ask questions regarding services. You can take one step
+                further to access the Sample AI Chatbot. Please keep in mind
+                that this is only a sample; the real one is much better than
+                this.
+            </p>
+            <div class="m-auto">
+                <a
+                    href="/pages/bot.html"
+                    class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:ring-blue-900"
+                >
+                    Click Here
+                    <svg
+                        class="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 14 10"
+                    >
+                        <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9"
+                        />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <script>
+            // Function to get the value of the company name from the URL
+            function getParameterByName(name, url) {
+                if (!url) url = window.location.href;
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return "";
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
+
+            // Get the company name from the URL parameter
+            var companyNameParam = getParameterByName("cn");
+            var companyName = "";
+
+            // Format company name if parameter is found
+            if (companyNameParam) {
+                // Replace hyphens with spaces and convert the first letter of each word to uppercase
+                companyName = companyNameParam
+                    .replace(/-/g, " ")
+                    .replace(/\b\w/g, function (char) {
+                        return char.toUpperCase();
+                    });
+            }
+
+            // Display the formatted company name
+            document.getElementById("companyNameDisplay").innerText =
+                companyName;
+        </script>
+    </body>
+</html>
